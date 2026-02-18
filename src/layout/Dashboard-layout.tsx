@@ -102,7 +102,7 @@ export default function DashboardLayout({ children }: Props) {
           >
             <LogOut size={18} />
             Logout
-          </button>
+          </button> 
         </div>
 
       </aside>
