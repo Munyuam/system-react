@@ -1,0 +1,8 @@
+# Deployment used by `npx convex dev`
+CONVEX_DEPLOYMENT=dev:rugged-loris-733 # team: youngprimemystic, project: hostelhub
+
+VITE_CONVEX_URL=https://rugged-loris-733.convex.cloud
+
+VITE_CONVEX_SITE_URL=https://rugged-loris-733.convex.site
+
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_Z2VudGxlLWh1c2t5LTY1LmNsZXJrLmFjY291bnRzLmRldiQ
