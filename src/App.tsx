@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-import DashboardLayout from "@/layout/dashboard-layout"
+import DashboardLayout from "@/layout/Dashboard-layout"
 
 import Overview from "@/pages/Overview"
 import Payments from "@/pages/Payments"
