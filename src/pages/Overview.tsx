@@ -1,36 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+  export default function OverviewPage() {
+    return (
+      <div className="overview-page">
+        <h1>Welcome to Hostel Finder</h1>
+        <p>Find the best hostels for students in Malawi.</p>
+        <img src="https://www.tripadvisor.com/LocationPhotoDirectLink-g298274-d2156347-i198045976-Doogles_Lodge-Blantyre_Southern_Region.html" alt="Hostel Overview" />
+      </div>
+    )
+  }
 
-export default function Overview() {
-  return (
-    <div className="grid gap-4 md:grid-cols-3">
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Current Rent</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-2xl font-bold">$500</p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Next Due Date</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-2xl font-bold">March 1</p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Maintenance Requests</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-2xl font-bold">2 Open</p>
-        </CardContent>
-      </Card>
-
-    </div>
-  )
-}
