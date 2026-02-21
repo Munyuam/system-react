@@ -20,28 +20,29 @@ const hostelsData: Hostel[] = [
     name: "Sunrise Hostel",
     location: "Zomba",
     price: "MWK 120,000 / semester",
-    image: "https://www.tripadvisor.com/LocationPhotoDirectLink-g298274-d2156347-i198045976-Doogles_Lodge-Blantyre_Southern_Region.html"
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5"
   },
   {
     id: 2,
     name: "Campus View Lodge",
     location: "Blantyre",
     price: "MWK 150,000 / semester",
-    image: "https://www.facebook.com/groups/malawi.houses.for.rent/posts/9234352209941202/"
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
   },
   {
     id: 3,
     name: "Green Valley Hostel",
     location: "Lilongwe",
     price: "MWK 110,000 / semester",
-    image: "https://www.facebook.com/groups/lilongwe.houses.for.sale/posts/to-rental-hostel-for-rent-at-area-25-c-near-tarmac-roadthe-roomanother-room-goin/1261545458311661/"
-  },
+    image: "https://images.unsplash.com/photo-1560184897-ae75f418493e"
+  }
+  ,
   {
     id: 4,
-    name: "Green Valley Hostel",
-    location: "Lilongwe",
-    price: "MWK 110,000 / semester",
-    image: "https://malawiplus.com/doogles/"
+    name: "Mountain View Hostel",
+    location: "Mzuzu",
+    price: "MWK 130,000 / semester",
+    image: "https://images.unsplash.com/photo-1560184897-ae75f418493e"
   }
 ]
 
@@ -79,71 +80,79 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen py-10">
-      <div className="max-w-6xl mx-auto px-6 space-y-8">
+    <div className="min-h-screen bg-white py-12">
+      <div className="max-w-6xl mx-auto px-6 space-y-10">
 
         {/* Header */}
-        <div className="text-center space-y-3">
-          <h1 className="text-3xl font-bold tracking-tight">
-            Find Your Perfect Hostel
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-semibold text-black">
+            Find Your Hostel
           </h1>
-          <p className="text-muted-foreground">
-            Browse available hostels and submit your application
+          <p className="text-gray-500 text-sm">
+            Browse available hostels and apply
           </p>
         </div>
 
-        {/* Search Input */}
-        <div className="flex gap-2 max-w-2xl mx-auto">
+        {/* Search */}
+        <div className="flex gap-3 max-w-xl mx-auto">
           <Input
-            placeholder="Search by location, name, or price"
+            placeholder="Search hostel name..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            className="border-gray-300 focus-visible:ring-blue-500"
           />
-          <Button onClick={handleSearch}>
+          <Button
+            onClick={handleSearch}
+            className="bg-blue-600 text-white hover:bg-blue-700"
+          >
             <Search className="w-4 h-4 mr-2" />
             Search
           </Button>
         </div>
 
-        {/* Show Filters Button */}
-        <div className="flex justify-center mt-4">
-          <Button
-            variant="outline"
-            className="flex items-center gap-2"
+        {/* Filter Toggle */}
+        <div className="flex justify-center">
+          <button
             onClick={() => setShowFilters(!showFilters)}
+            className={`flex items-center gap-2 text-sm transition ${
+              showFilters
+                ? "text-blue-600"
+                : "text-gray-600 hover:text-black"
+            }`}
           >
             <Filter className="w-4 h-4" />
             {showFilters ? "Hide Filters" : "Show Filters"}
-          </Button>
+          </button>
         </div>
 
-        {/* Filters Section */}
+        {/* Filters */}
         {showFilters && (
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-            {/* Location Filter */}
+          <div className="flex flex-col sm:flex-row justify-center gap-6 border-t pt-6">
             <div className="flex flex-col">
-              <label className="text-sm font-medium text-blue-800">Location</label>
+              <label className="text-xs text-gray-500">Location</label>
               <select
-                className="border rounded-lg px-3 py-2"
+                className="border border-gray-300 rounded-md px-3 py-2 mt-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
               >
                 <option value="All">All Locations</option>
+                <option value="Zomba">Zomba</option>
+                <option value="Blantyre">Blantyre</option>
+                <option value="Lilongwe">Lilongwe</option>
               </select>
             </div>
 
-            {/* Price Filter */}
             <div className="flex flex-col">
-              <label className="text-sm font-medium text-blue-800">Price</label>
+              <label className="text-xs text-gray-500">Price</label>
               <select
-                className="border rounded-lg px-3 py-2"
+                className="border border-gray-300 rounded-md px-3 py-2 mt-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={selectedPrice}
                 onChange={(e) => setSelectedPrice(e.target.value)}
               >
                 <option value="All">All Prices</option>
+                <option value="MWK 110,000 / semester">MWK 110,000</option>
                 <option value="MWK 120,000 / semester">MWK 120,000</option>
                 <option value="MWK 150,000 / semester">MWK 150,000</option>
-                <option value="MWK 110,000 / semester">MWK 110,000</option>
               </select>
             </div>
           </div>
@@ -151,24 +160,24 @@ export default function SearchPage() {
 
         {/* Loading */}
         {loading && (
-          <div className="flex justify-center mt-6">
-            <Loader2 className="animate-spin" />
+          <div className="flex justify-center">
+            <Loader2 className="animate-spin text-blue-600" />
           </div>
         )}
 
         {/* Results Count */}
         {!loading && (
-          <p className="text-center text-sm text-muted-foreground mt-2">
-            {results.length} hostel(s) available
+          <p className="text-center text-xs text-gray-500">
+            {results.length} hostel(s) found
           </p>
         )}
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4">
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {results.map((hostel) => (
             <Card
               key={hostel.id}
-              className="rounded-2xl shadow-sm hover:shadow-lg transition duration-300"
+              className="rounded-2xl border border-gray-200 shadow-none hover:shadow-sm transition"
             >
               <CardHeader className="p-0">
                 <img
@@ -178,14 +187,22 @@ export default function SearchPage() {
                 />
               </CardHeader>
 
-              <CardContent className="space-y-2 pt-4">
-                <h3 className="text-lg font-semibold">{hostel.name}</h3>
-                <p className="text-sm text-muted-foreground">{hostel.location}</p>
-                <p className="font-medium">{hostel.price}</p>
+              <CardContent className="pt-4 space-y-1">
+                <h3 className="text-lg font-medium text-black">
+                  {hostel.name}
+                </h3>
+                <p className="text-sm text-gray-500">
+                  {hostel.location}
+                </p>
+                <p className="text-sm font-medium text-blue-600">
+                  {hostel.price}
+                </p>
               </CardContent>
 
               <CardFooter>
-                <Button className="w-full">View Details</Button>
+                <Button className="w-full bg-black text-white hover:bg-gray-900">
+                  View Details
+                </Button>
               </CardFooter>
             </Card>
           ))}
@@ -193,10 +210,12 @@ export default function SearchPage() {
 
         {/* Empty State */}
         {!loading && results.length === 0 && (
-          <div className="text-center py-10">
-            <p className="text-lg font-medium">No hostels found</p>
-            <p className="text-muted-foreground">
-              Try searching with different criteria.
+          <div className="text-center py-12">
+            <p className="text-base font-medium text-black">
+              No hostels found
+            </p>
+            <p className="text-sm text-gray-500">
+              Try a different search term.
             </p>
           </div>
         )}
